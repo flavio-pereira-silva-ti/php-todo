@@ -1,0 +1,25 @@
+{
+  "name": "php-todo",
+  "authors": [
+    "flavio-pereira-silva-ti <flavio.pereira.silva.ti@gmail.com>"
+  ],
+  "description": "A TODO menagement system in PHP.",
+  "main": "index.php",
+  "keywords": [
+    "PHP",
+    "TODO",
+    "Sandbox"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7"
+  }
+}
