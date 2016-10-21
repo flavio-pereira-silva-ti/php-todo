@@ -1,7 +1,7 @@
 {
   "name": "php-todo",
   "authors": [
-    "flavio-pereira-silva-ti <flavio.pereira.silva.ti@gmail.com>"
+    "flavio-pereira-silva-ti"
   ],
   "description": "A TODO menagement system in PHP.",
   "main": "index.php",
