@@ -27,7 +27,7 @@ class TODOModel {
     $conn = get_conn();
     
     // TODO: Use logged user id
-    $sql = "SELECT * FROM TODO WHERE user_id = 1 ORDER BY deadline, title";
+    $sql = "SELECT * FROM TODO WHERE user_id = 1 and is_done = (0) ORDER BY deadline, title";
     $results = $conn->query($sql);
     if ($results->num_rows > 0) {
       while ($row = $results->fetch_assoc()) {

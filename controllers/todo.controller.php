@@ -10,7 +10,9 @@ class TODOController {
   }
   
   public function get_attr($name) {
-    return $this->attrs[$name];
+    if (array_key_exists($name, $this->attrs)) {
+      return $this->attrs[$name];
+    }
   }
   
   public function get_view_mode() {
@@ -57,10 +59,10 @@ class TODOController {
     
     if (isset($_POST['deadline']) && $_POST['deadline'] == true) {
       $deadline = $_POST['deadline'];
-      if (date('m-d-Y', strtotime($deadline)) <= date('m-d-Y', strtotime('yesterday'))) {
+      if (strtotime($deadline) <= strtotime('yesterday')) {
         $deadlineErr = 'Deadline cannot be before today.';
       } else {
-        $todo->set_deadline(date_create($deadline));
+        $todo->set_deadline(new DateTime($deadline));
       }
     } else {
       $deadlineErr = 'Deadline is required.';
@@ -68,6 +70,7 @@ class TODOController {
     
     if ($titleErr === '' && $descriptionErr === '' && $deadlineErr === '') {
       $this->model->insert_todo($todo);
+      $this->attrs['messages'] = array('success' => 'TODO successfully created!');
       $this->list_all(); // Go to the list view
     } else {
       $this->attrs['title'] = $title;
@@ -76,6 +79,7 @@ class TODOController {
       $this->attrs['descriptionErr'] = $descriptionErr;
       $this->attrs['deadline'] = $deadline;
       $this->attrs['deadlineErr'] = $deadlineErr;
+      $this->attrs['messages'] = array('warning' => 'Some fields are invalid!');
       $this->new_todo(); // Go back to the new view
     }
   }

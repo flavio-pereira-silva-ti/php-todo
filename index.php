@@ -88,16 +88,7 @@ require 'controllers/todo.controller.php';
             $view = new ContactView($controller);
             echo $view->output();
           }
-        
-        } else {
-          $model = new TODOModel();
-          $controller = new TODOController($model);
-          $view = new TODOView($controller);
-          $controller.list_all();
-          echo $view->output();
-        }
-        
-        if (isset($_POST['section']) && $_POST['section'] == true) { // POST HANDLER
+        } elseif (isset($_POST['section']) && $_POST['section'] == true) { // POST HANDLER
           
           $section = $_POST['section'];
           
@@ -113,6 +104,12 @@ require 'controllers/todo.controller.php';
             
             echo $view->output();
           }
+        } else {
+          $model = new TODOModel();
+          $controller = new TODOController($model);
+          $view = new TODOView($controller);
+          $controller->list_all();
+          echo $view->output();
         }
         # FRONT CONTROLLER <--
         ?>
