@@ -71,7 +71,12 @@ require 'controllers/todo.controller.php';
             
             if (isset($_GET['action']) && $_GET['action'] == true) {
               $action = $_GET['action'];
-              $controller->{$action}();
+
+              if (isset($_GET['id']) && $_GET['id'] == true) {
+                $controller->{$action}($_GET['id']);
+              } else {
+                $controller->{$action}();
+              }
             }
             
             echo $view->output();

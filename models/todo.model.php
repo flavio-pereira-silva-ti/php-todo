@@ -46,6 +46,15 @@ class TODOModel {
     
     return $todos;
   }
+
+  public function delete_todo($id) {
+    $conn = get_conn();
+    $stmt = $conn->prepare("DELETE FROM TODO WHERE id = ?");
+    $stmt->bind_param('i', $id);
+    $stmt->execute();
+    $stmt->close();
+    $conn->close();
+  }
 }
 
 class TODO {

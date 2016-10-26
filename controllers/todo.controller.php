@@ -92,8 +92,16 @@ class TODOController {
     
   }
   
-  public function delete_todo() {
-    
+  public function delete_todo($id) {
+    try {
+      $this->model->delete_todo($id);
+    } catch (Exception $e) {
+      $this->attrs['messages'] = array('warning' => 'There was an error: ' . $e->getMessage);
+      $this->list_all(); // Go to the list view
+      return;
+    }
+    $this->attrs['messages'] = array('success' => 'TODO successfully deleted!');
+    $this->list_all(); // Go to the list view
   }
   
   private function set_view_mode($viewMode) {
